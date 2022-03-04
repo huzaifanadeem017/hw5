@@ -16,31 +16,43 @@ int main(int argc, char** argv) {
     width=50;
     startY=5;
     startX=5;
-
-    
+    char inputChar;
+    int count;
+    char commands[100]; 
 
 
    dsh_init(); 
 
     printf("dsh> ");
 	
-    
+   // initscr();
+   
     while(getline(&line,&size,stdin) > 0) {
 
        // dsh_run(line);
-	printf("dsh>c");
-
-
-
+//	printf("dsh>");
+	
+	
 	initscr();
 	noecho();
 	cbreak();
 
-	WINDOW *inpWindow=newwin(height,width,startY,startX);
-	box(inpWindow,0,0);
-	mvwprintw(inpWindow,1,1,"Enter Input");
+       	WINDOW *inpWindow=newwin(height,width,startY,startX);	
+	
+       box(inpWindow,0,0);	
+	mvwprintw(inpWindow,1,1,"Enter command: ");
+       inputChar=mvwgetch(inpWindow,startY,startX);
+       count++;
+	commands[count++]=inputChar;
+
+
+//	WINDOW *inpWindow=newwin(height,width,startY,startX);
+//	box(inpWindow,0,0);
+//	mvwprintw(inpWindow,1,1,"Enter Input");
 	dsh_run(line);
-	mvwprintw(inpWindow,3,3,line);
+	//mvwprintw(
+	//3,3,line);
+
 
 	refresh();
 	wrefresh(inpWindow);
